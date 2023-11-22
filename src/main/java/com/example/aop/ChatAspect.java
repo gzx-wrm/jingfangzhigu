@@ -3,6 +3,7 @@ package com.example.aop;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.example.mapper.ChatMapper;
 import com.example.pojo.Chat;
+import com.example.pojo.Message;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -36,7 +37,11 @@ public class ChatAspect {
     @AfterReturning(value = "updateChatTimePointCut()", returning = "result")
     public int updateChatTime(JoinPoint joinPoint, Object result) {
         if ((int) result >= 1) {
-            String chatId = (String) joinPoint.getArgs()[0];
+            Object obj = joinPoint.getArgs()[0];
+            String chatId;
+            if(obj instanceof Message)
+                chatId = ((Message) obj).getChatId();
+            else chatId = (String) obj;
             return chatMapper.update(null, Wrappers.<Chat>update().set("update_time", new Date()).eq("chat_id", chatId));
         }
         return 0;
