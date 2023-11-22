@@ -1,0 +1,6 @@
+2023-11-15 20:32:20 [main] INFO  com.example.Application - Starting Application on PC-20210904KJSA with PID 20608 (E:\jingfang\jingfang\target\classes started by Administrator in E:\jingfang\jingfang)
+2023-11-15 20:32:20 [main] INFO  com.example.Application - No active profile set, falling back to default profiles: default
+2023-11-15 20:32:22 [main] INFO  com.example.Application - Started Application in 2.12 seconds (JVM running for 3.215)
+2023-11-15 20:34:11 [main] INFO  com.example.Application - Starting Application on PC-20210904KJSA with PID 19548 (E:\jingfang\jingfang\target\classes started by Administrator in E:\jingfang\jingfang)
+2023-11-15 20:34:11 [main] INFO  com.example.Application - No active profile set, falling back to default profiles: default
+2023-11-15 20:34:13 [main] INFO  com.example.Application - Started Application in 2.028 seconds (JVM running for 2.89)

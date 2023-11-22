@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/assets/css/login.css">
+    <link rel="stylesheet" href="../static/assets/css/common.css">
+    <script src="../static/assets/js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="content">
+        <h1>欢迎回来！</h1>
+        <p class="friendly">登录您的账户</p>
+        <input id="account" type="text" placeholder="请输入您的账号...">
+        <br>
+        <input id="password" type="password" placeholder="请输入您的密码...">
+        <br>
+        <button class="login">登录</button>
+        <p><a class="forget" href="/verifyCodeLogin">忘记密码？</a></p>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".login").click(function () {
+            // 获取用户输入的数据
+            var account = $("#account").val();
+            var password = $("#password").val();
+
+            // 发送Ajax POST请求到服务器的登录处理页面
+            $.ajax({
+                type: "POST",
+                url: "/user/passwordLogin",
+                data: {
+                    "account": account,
+                    "pwd": password
+                },
+                success: function (response) {
+                    // 登录成功的处理
+                    // response是服务器返回的数据，根据您的需求进行处理
+                    alert(response.message)
+                    window.location.href = response.data["redirectUrl"];
+                }
+            });
+        });
+    });
+
+</script>
+</html>

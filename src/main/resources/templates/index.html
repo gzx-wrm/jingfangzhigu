@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>登录界面</title>
+  <link rel="stylesheet" href="../static/assets/css/index.css">
+  <link rel="stylesheet" href="../static/assets/css/common.css">
+  <script src="../static/assets/js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="left-section">
+      <h1>经方智谷</h1>
+      <h2>——您的私人AI中医药诊疗助手——</h2>
+    </div>
+    <div class="middle-section">
+      <!-- 中间内容区域，可以放置登录表单等 -->
+    </div>
+    <div class="right-section">
+      <div><img src="../static/assets/images/logo/logo.png" alt="" style="display: inline-block;vertical-align: middle">
+      <div class="logo-text">进入使用</div>
+      </div>
+      <div><a class="login-btn" href="/login">登录</a>
+      <a class="register-btn" href="/register">注册</a></div>
+    </div>
+  </div>
+</body>
+
+<script>
+  // $(document).ready(function() {
+  //   // 处理登录按钮点击事件
+  //   $(".login-btn").click(function() {
+  //     // 这里可以添加获取用户名和密码的逻辑
+  //     // 发送Ajax请求
+  //     $.ajax({
+  //       type: 'GET',
+  //       url: '/login', // 后端登录URL
+  //       success: function(data) {
+  //         // 登录成功，根据后端响应进行跳转
+  //         window.location.href = data.redirectUrl;
+  //       },
+  //       error: function(xhr, status, error) {
+  //         // 登录失败，显示错误信息
+  //         alert('登录失败: ' + error);
+  //       }
+  //     });
+  //   });
+  // });
+</script>
+</html>

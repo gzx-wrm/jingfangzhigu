@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatGPT SSE Example</title>
+    <script>
+        let eventSource;
+        let currentConversationId;
+
+        function subscribe(conversationId) {
+            if (eventSource) {
+                eventSource.close();
+            }
+
+            currentConversationId = conversationId;
+            // 订阅服务
+            eventSource = new EventSource(`/sse/${conversationId}`);
+
+            // 当event类型为end时，触发，表示传输结束，这个事件会携带整个响应内容，方便记录
+            eventSource.addEventListener('end', function(event) {
+                console.log("本次sse传输结束");
+                // 处理服务器发送的end事件，例如关闭连接或更新页面内容
+                var data = JSON.parse(event.data);
+                console.log(data);
+            });
+
+            // 当event类型为error时触发，这时可能有若干种情况
+            // 如果undefined !== event.data.data，则说明是服务器端出错，这时给出错误提示信息
+            // 否则都认为是连接超时或eventSource的正常行为，给出重试提示就好
+            eventSource.addEventListener('error', function(event) {
+                console.log("服务出错，请重试！");
+                console.log(event)
+            });
+
+            // 当event类型为message时触发，当用户发送一条message时，会有两种情况
+            // 第一种情况是消息为userMessageId和assistantMessageId，前端留作记录，不打印输出
+            // 第二种情况是消息为用户消息的响应，展示给用户看的，这时就在一个容器中显示就好
+            // 区分这两种情况只需要看undefined !== data["data"]["delta"]这个条件
+            eventSource.onmessage = function(event) {
+                const messageContainer = document.getElementById('messages');
+                var data = JSON.parse(event.data);
+                if (undefined !== data["data"]["delta"])
+                    messageContainer.textContent += data["data"]["delta"]
+            };
+        }
+
+        // 用户发送消息，注意参数名的对应关系
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value;
+            input.value = '';
+            const b = {
+                "text": message,
+                // 这里记录了当前chat的history对话，按照以下格式填充即可
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "我最近头晕",
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "抱歉听到你不舒服。头疼可能有很多原因，以下是一些建议，但请注意，我并不是医生，如果症状严重，请及时就医。\n" +
+                            "\n" +
+                            "1. 休息一下：尽量在一个安静、黑暗的环境中休息，放松身心。\n" +
+                            "2. 热敷或冷敷：可以尝试在疼痛部位敷上热毛巾或冰袋，有时候这种方法可以缓解头疼。\n" +
+                            "3. 喝水：头疼可能是由于缺水引起的，请确保充足饮水。\n" +
+                            "4. 调整姿势：长时间保持一个姿势可能导致头疼，请注意调整姿势，不要长时间低头看手机或电脑。\n" +
+                            "5. 适当锻炼：轻度运动如散步或瑜伽可能有助于缓解头疼。\n" +
+                            "\n" +
+                            "如果头疼持续严重或伴随其他症状，请及时就医。",
+                    }
+                ]
+            }
+
+            fetch(`/sse/chat/${currentConversationId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(b)
+            });
+        }
+
+        function switchConversation() {
+            const conversationIdInput = document.getElementById('conversation-id');
+            const conversationId = conversationIdInput.value;
+            subscribe(conversationId);
+        }
+    </script>
+</head>
+<body>
+<div>
+    <label for="conversation-id">先点击这个，随便输入一个数字当做chatId</label>
+    <input type="text" id="conversation-id">
+    <button onclick="switchConversation()">点击进行订阅</button>
+</div>
+<div>
+    <label for="message-input">输入消息：</label>
+    <input type="text" id="message-input">
+    <button onclick="sendMessage()">发送</button>
+</div>
+<div id="messages"></div>
+</body>
+</html>

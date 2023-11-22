@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/assets/css/verify_login.css">
+    <link rel="stylesheet" href="../static/assets/css/common.css">
+    <script src="../static/assets/js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="content">
+        <h1>欢迎回来！</h1>
+        <p class="friendly">验证码登录</p>
+        <input type="text" id="account" placeholder="请输入您的账号...">
+        <button class="verify-code">获取验证码</button>
+        <br>
+        <input type="text" id="code" placeholder="请输入验证码...">
+        <br>
+        <button class="login">登录</button>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".verify-code").click(function () {
+            var account = $("#account").val();
+            // 发送Ajax POST请求到服务器的登录处理页面
+            $.ajax({
+                type: "GET",
+                url: "/user/sendSms?phone=" + account,
+                success: function (response) {
+                    // 登录成功的处理
+                    alert(response.message);
+                }
+            });
+            var $button = $(this);
+            $button.prop('disabled', true);
+
+            var seconds = 60;
+            $button.text('请等待 ' + seconds + ' 秒');
+
+            var intervalId = setInterval(function () {
+                seconds--;
+                $button.text('请等待 ' + seconds + ' 秒');
+
+                if (seconds <= 0) {
+                    clearInterval(intervalId);
+                    $button.text('获取验证码');
+                    $button.prop('disabled', false);
+                }
+            }, 1000);
+        });
+        $(".login").click(function () {
+            // 获取用户输入的数据
+            var account = $("#account").val();
+            var code = $("#code").val();
+
+            // 发送Ajax POST请求到服务器的登录处理页面
+            $.ajax({
+                type: "POST",
+                url: "/user/smsLogin",
+                data: {
+                    "phone": account,
+                    "code": code
+                },
+                success: function (response) {
+                    // 登录成功的处理
+                    // response是服务器返回的数据，根据您的需求进行处理
+                    alert(response.message)
+                }
+            });
+        });
+    });
+
+</script>
+</html>

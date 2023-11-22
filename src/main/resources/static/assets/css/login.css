@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../images/bgs/registerbg.png');
+    background-size: cover;
+}
+.content {
+    text-align: center;
+    padding: 50px;
+    border-radius: 12px;
+}
+h1{
+    margin-left: 20px;
+    font-family: "兰亭粗黑简";
+    src:url("../font/兰亭粗黑简.TTF");
+}
+.friendly {
+    font-family: "Microsoft Yi Baiti";
+    font-size: 17px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border-radius: 12px;
+    border:2px solid #ccc;
+    margin-bottom: 10px;
+}
+.login {
+    padding: 10px 20px;
+    background-color: #689AFB;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+}
+.login:hover {
+    background-color: #76BDB3;
+}
+
+.forget {
+    color: #4a4a4a;
+    font-size: 0.8em;
+}

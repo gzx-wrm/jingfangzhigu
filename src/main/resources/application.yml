@@ -1,0 +1,50 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-bp1fx93r6rj80qypzmo.mysql.rds.aliyuncs.com:3306/jingfang?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    username: host
+    password: Aa62655929
+    hikari:
+      idle-timeout: 60000
+      maximum-pool-size: 30
+      minimum-idle: 10
+
+  thymeleaf:
+    cache: false
+
+  # 热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      additional-exclude: static/**
+
+  resources:
+    cache:
+      period: 0
+
+server:
+  servlet:
+    context-path: /
+  port: 8000
+
+# 日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+# 腾讯云SMS的相关参数
+tencent:
+  secretId: AKIDkHaeV7TaQzIMAhxxgwve6HBoAF3btwc3
+  secretKey: EBrIRKvGJAlpfFbhXDdpkOluoSu9AuNc
+  sms:
+    signName: 翰翰的天地
+    templateId: 1389291
+    appId: 1400675283
+
+logging:
+  level:
+    com:
+      example: INFO

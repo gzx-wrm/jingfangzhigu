@@ -1,0 +1,95 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../images/bgs/registerbg.png');
+    background-size: cover;
+}
+.content {
+    text-align: center;
+    padding: 50px;
+    border-radius: 12px;
+}
+h1{
+    margin-left: 20px;
+    font-family: "兰亭粗黑简";
+    src:url("../font/兰亭粗黑简.TTF");
+}
+p{
+    color:#000000;
+    font-weight:bold;
+    font-size:18px;
+}
+a{
+    font-size:14px;
+}
+
+input[type="identify"] {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border-radius: 12px;
+    border:2px solid #ccc;
+    margin-bottom: 10px;
+}
+input[type="password"] {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border-radius: 12px;
+    border:2px solid #ccc;
+    margin-bottom: 10px;
+}
+input[type="text"]{
+    padding: 10px;
+    margin:  10px;
+    width: 210px;
+    border-radius: 12px;
+    border:2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.btn-second{
+    padding: 10px 7px;
+    background-color: #689AFB;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px
+}
+
+.btn-first{
+    margin-top:10px ;
+    margin-right:70px;
+    padding: 10px 30px;
+    background-color: #689AFB;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px
+
+}
+
+.btn-third{
+    margin-top:10px ;
+    padding: 10px 30px;
+    background-color: #76BDB3;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px
+
+}
+.btn-first:hover {
+    background-color: #D3D3D3;
+    color: #000000;
+}
+.btn-second:hover {
+    background-color:  #D3D3D3;
+    color: #000000;
+}
+.btn-third:hover {
+    background-color:   #D3D3D3;
+    color: #000000;
+}
