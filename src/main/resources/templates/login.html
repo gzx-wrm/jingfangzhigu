@@ -37,7 +37,6 @@
                 },
                 success: function (response) {
                     // 登录成功的处理
-                    // response是服务器返回的数据，根据您的需求进行处理
                     alert(response.message)
                     window.location.href = response.data["redirectUrl"];
                 }

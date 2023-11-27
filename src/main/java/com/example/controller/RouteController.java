@@ -48,4 +48,9 @@ public class RouteController {
     public String test() {
         return "test";
     }
+
+    @RequestMapping("/main")
+    public String goChat() {
+        return "chat2";
+    }
 }

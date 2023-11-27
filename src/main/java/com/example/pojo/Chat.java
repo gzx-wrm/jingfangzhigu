@@ -34,7 +34,7 @@ public class Chat {
     private Date updateTime;
 
     @TableField("is_delete")
-    private int is_delete;
+    private int isDelete;
 
     @TableField(exist = false)
     private ArrayList<Message> message;

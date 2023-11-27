@@ -3,6 +3,7 @@ package com.example.utils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -24,8 +25,14 @@ public class JwtUtil {
     }
 
     public static String getTokenFromRequest(HttpServletRequest request) {
-        String authHeader = request.getHeader("Authorization");
-        String token = authHeader.substring(7);
+        Cookie[] cookies = request.getCookies();
+        String token = "";
+        for (Cookie cookie : cookies) {
+            if ("Authorization".equals(cookie.getName())) {
+                token = cookie.getValue();
+                break;
+            }
+        }
 
         return parseToken(token);
     }

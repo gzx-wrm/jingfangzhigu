@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="../static/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../static/assets/js/jingfang.js"></script>
+    <link rel="stylesheet" href="../static/assets/css/common.css">
+    <link rel="stylesheet" href="../static/assets/css/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="head">
+        <img class='logoimg' src="../static/assets/images/logo/logo.png"/>
+        <h4 style="margin:auto 30px auto 10px;">-您的私人AI中医诊疗助手-</h4>
+        <textarea placeholder="在这里输入多行内容" onfocus="clearPlaceholder(this)"></textarea>
+    </div>
+    <div class="body">
+        <div class="left-sidebar">
+            <div class="ChatHistory" id="new" style="border: 1px solid #036AFF; /* 设置边框样式，根据需要调整 */">
+                <img style="margin: auto 10px;width: 20px;" src="../static/assets/images/icon/plus.png"/>
+                <p style="text-align: center; flex: 1;color:#036AFF;font-size: 16px;font-weight:bold;">新建对话</p>
+            </div>
+            <div class="ChatHistory"
+                 style="border-top: 1px solid lightgrey;border-bottom: 1px solid lightgrey; border-radius: 0;background-color:rgb(255, 255, 255,0); padding: 0;margin:0;color: grey;">
+                <img style="margin: auto 20px;width: 20px;" src="../static/assets/images/icon/fill-sousuo.png"/>
+                <p style=" flex: 1;">搜索历史记录</p>
+            </div>
+            <p class="ChatHistoryHeader" style="font-size: 14px;">网页历史对话</p>
+            <div class="box"></div>
+            <!--<div class="head" style="justify-content: center;">
+                <div class="ChatHistory" style="flex: 1;">
+                    <p style="text-align: center;flex: 1;">历史删除</p>
+                </div>
+                <div class="ChatHistory"style="flex: 1;">
+                    <p style="text-align: center; flex: 1;">历史分享</p>
+                </div>
+            </div>
+            <div class="ChatHistory">
+                    <img style="width: 20px;"src= "pic/delete.png"/>
+                    <p style="text-align: center; flex: 1; margin: 0;">批量删除</p>
+            </div>-->
+        </div>
+        <div class="right-sidebar">
+            <div class="header" id="header">
+            </div>
+            <div class="header1" id="header1">
+                <h1>经方智谷</h1>
+                <h4>—您的私人AI中医诊疗助手—</h4>
+            </div>
+
+            <div class="content" id="content">
+                <div class="rectangle">
+                    <h4>【我想知道】</h4>
+                    <p>药物属性是热是凉?这个生病能不能吃?</p>
+                    <p>更多您想知道的，我们知无不言。</p>
+                </div>
+                <div class="rectangle">
+                    <h4>【我要治病】</h4>
+                    <p>我发现今天头有点晕，我生了什么病吗?</p>
+                    <p>我突然开始咳嗽打喷嚏，我要吃什么药治疗?</p>
+                </div>
+                <div class="rectangle">
+                    <h4>【拍照诊疗】</h4>
+                    <p>我不会描述病情，我想上传舌苔照片来分析诊治。</p>
+                    <p></p>
+                </div>
+                <div class="rectangle">
+                    <h4>【其他设备】</h4>
+                    <p>我有智能手表可以提供身体健康数据。</p>
+                    <p>我想绑定其他可穿戴设备来监测健康情况。</p>
+                </div>
+            </div>
+            <div class="content2">
+                <p style="margin:0 20px;font-size: 14px;">你可以问我：</p>
+                <div class="content22">
+                    <div class="rectangle2">
+                        我最近头痛伴着流鼻涕.....该吃什么药?
+                    </div>
+                    <div class="rectangle2">
+                        最近中医馆配的酸梅汤很火，请问可以当饮料喝吗？
+                    </div>
+                    <div class="rectangle2">
+                        胃肠炎可以吃柚子吗？
+                    </div>
+                </div>
+            </div>
+            <div class="box"></div>
+            <div class="foot">
+                <div class="choice">
+                    <div class="choiceContent">
+                        <img src="../static/assets/images/icon/inquiry.png"/>
+                        <p style="color: #036AFF;">健康知识问答</p>
+                    </div>
+                    <div class="choiceContent">
+                        <img src="../static/assets/images/icon/report.png"/>
+                        <p style="color: #8a8a8a;">查看问答</p>
+                        <img src="../static/assets/images/icon/lock.png"/>
+                    </div>
+                    <div class="choiceContent">
+                        <img src="../static/assets/images/icon/tongue.png"/>
+                        <p style="color: #8a8a8a;">舌苔问诊</p>
+                        <img src="../static/assets/images/icon/lock.png"/>
+                    </div>
+                    <div class="choiceContent">
+                        <img src="../static/assets/images/icon/data.png"/>
+                        <p style="color: #8a8a8a;">数据侦查</p>
+                        <img src="../static/assets/images/icon/lock.png"/>
+                    </div>
+                    <p style="color: #036AFF; margin: 0px;cursor: pointer;">健康答疑：为你解答健康疑惑！</p>
+
+                </div>
+                <div class="bottom">
+                    <textarea id="messageInput" placeholder="请在此处进行提问" onfocus="clearPlaceholder(this)"
+                              style="color:black"></textarea>
+                    <button id="hideButton" onclick="sendMessage()">
+                        <svg t="1682141916531" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="1271" width="16" height="16">
+                            <path d="M0 1024l106.496-474.112 588.8-36.864-588.8-39.936L0 0l1024 512z" fill="#ffffff"
+                                  p-id="1272"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    // 保存对话数据
+    let chats;
+    // 当前对话信息
+    let currentChat = null;
+    // 是否是新对话
+    let isNew = false;
+    // 当前的用户消息
+    let currentUserMessage = {};
+    // 事件流
+    let eventSource;
+    // 最后一个消息元素
+    let lastBubble;
+
+    // 开启对话
+    function hideElements() {
+        // 隐藏原来的内容
+        document.querySelector('.header1').style.display = 'none';
+        document.querySelector('.content2').style.display = 'none';
+        document.querySelector('.content').style.display = 'none';
+        var box = document.getElementById('header');
+        box.style.height = '700px';
+    }
+
+    // 显示隐藏的内容
+    function showElements() {
+        document.querySelector('.header1').style.display = 'flex'
+        document.querySelector('.content2').style.display = 'block';
+        document.querySelector('.content').style.display = 'grid';
+        var box = document.getElementById('header');
+        box.style.height = 'auto';
+    }
+
+    // 清空对话内容
+    function clearMessage() {
+        $(".bubble").remove();
+        $(".bubble.me").remove();
+    }
+
+    // 向右侧bar中添加内容
+    function refreshRightBar(chatId, chatName) {
+        var appendDiv = $('<div/>', {
+            class: 'ChatHistory',
+            text: chatName
+        }).attr("chatId", chatId);
+        // 设置点击展示对话详情
+        appendDiv.on("click", function () {
+            clearMessage();
+            hideElements();
+            $.ajax({
+                type: "GET",
+                url: "/chat/" + $(this).attr("chatId"),
+                success: function (response) {
+                    currentChat = response["data"]["chat"];
+                    currentUserMessage = {};
+                    // 展示对话
+                    for (const message of currentChat["message"]) {
+                        switch (message["role"]) {
+                            case "user":
+                                displaySendMessage(message["messageId"], message["content"]);
+                                break;
+                            case "assistant":
+                                displayReplyMessage(message["messageId"], message["content"]);
+                                break;
+                        }
+                    }
+                }
+            })
+        });
+        $(".ChatHistoryHeader").after(appendDiv);
+    }
+
+    document.getElementById("hideButton").addEventListener("click", hideElements);
+    document.getElementById("new").addEventListener("click", createChat);
+    document.getElementById('messageInput').addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // 页面刚加载时发送初始化请求
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/chat/",
+            success: function (response) {
+                // 登录成功的处理
+                chats = response["data"]["chats"];
+                console.log(chats);
+                // 将历史对话渲染到左侧的bar
+                for (const chat of chats) {
+                    refreshRightBar(chat["chatId"], chat["chatName"]);
+                }
+            }
+        })
+    })
+
+    // 展示用户发出的信息
+    function displaySendMessage(messageId, content) {
+        var bubble = $('<div/>', {
+            class: "bubble me",
+            text: content
+        }).css('white-space', 'pre-wrap');
+        bubble.attr("messageId", messageId);
+        $('.header').append(bubble);
+    }
+
+    // 展示服务器响应信息
+    function displayReplyMessage(messageId, content) {
+        var conversation = document.getElementById('header');
+        var bubble = $('<div/>', {
+            class: "bubble",
+            text: content,
+        }).css('white-space', 'pre-wrap');
+        bubble.attr("messageId", messageId);
+        $('.header').append(bubble);
+        conversation.scrollTop = conversation.scrollHeight;
+
+        return bubble;
+    }
+
+    function clearPlaceholder(element) {
+        element.placeholder = "";
+    }
+
+    // 新建对话
+    function createChat() {
+        currentChat = null;
+        isNew = true;
+        clearMessage();
+        showElements();
+    }
+
+    // 发送消息函数
+    function sendMessage() {
+        hideElements();
+        const input = document.getElementById('messageInput');
+        currentUserMessage["content"] = input.value;
+        if (currentUserMessage["content"] == null || currentUserMessage["content"] === "")
+            return;
+        let messageId = generateUUID();
+        currentUserMessage["messageId"] = messageId;
+        // 先检查当前会话是否是新的，如果是新会话则需要创建
+        if (isNew === true) {
+            let chatId = generateUUID();
+            let chat = {
+                chatId: chatId,
+                chatName: currentUserMessage["content"]
+            };
+            currentChat = chat;
+            $.ajax({
+                type: "POST",
+                url: "/chat/",
+                contentType: "application/json",
+                data: JSON.stringify(chat),
+            })
+            currentChat["message"] = [];
+        }
+
+        input.value = '';
+        displaySendMessage(messageId, currentUserMessage["content"]);
+
+        // 创建一个bubble用于展示服务器响应信息
+        lastBubble = displayReplyMessage("", "");
+        // 先进行订阅然后再发消息
+        subscribe();
+        setTimeout(send, 1000);  // 延迟1秒后执行sendMessage函数
+    }
+
+    // 发送消息
+    function send() {
+        const body = {
+            "messageId": currentUserMessage["messageId"],
+            "text": currentUserMessage["content"],
+            // 这里记录了当前chat的history对话，按照以下格式填充即可
+            "messages": currentChat["message"]
+        }
+        fetch(`/sse/chat/${currentChat["chatId"]}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    }
+
+    // 订阅函数
+    function subscribe() {
+        return new Promise(((resolve, reject) => {
+            if (eventSource) {
+                eventSource.close();
+            }
+            // 订阅服务
+            eventSource = new EventSource(`/sse/${currentChat["chatId"]}`);
+
+            // 当event类型为end时，触发，表示传输结束，这个事件会携带整个响应内容，方便记录
+            eventSource.addEventListener('end', function (event) {
+                console.log("本次sse传输结束");
+                console.log(event);
+                // 处理服务器发送的end事件，向当前chat中追加message
+                currentChat["message"].push({
+                    "messageId": currentUserMessage["messageId"],
+                    "role": "user",
+                    "content": currentUserMessage["content"]
+                });
+                currentChat["message"].push({
+                    "messageId": lastBubble.attr("messageId"),
+                    "role": "assistant",
+                    "content": JSON.parse(event["data"])["data"]
+                });
+                if (isNew === true) {
+                    refreshRightBar(currentChat["chatId"], currentChat["chatName"]);
+                    isNew = false;
+                }
+                currentUserMessage = {};
+                lastBubble = null;
+            });
+
+            // 当event类型为error时触发，这时可能有若干种情况
+            // 如果undefined !== event.data.data，则说明是服务器端出错，这时给出错误提示信息
+            // 否则都认为是连接超时或eventSource的正常行为，给出重试提示就好
+            eventSource.addEventListener('error', function (event) {
+                if (undefined === event.data)
+                    return;
+                else if (undefined !== event.data.data) {
+                    lastBubble.append("响应出错，请刷新页面重试！");
+                }
+            });
+
+            // 当event类型为message时触发，当用户发送一条message时，会有两种情况
+            // 第一种情况是消息为userMessageId和assistantMessageId，前端留作记录，不打印输出
+            // 第二种情况是消息为用户消息的响应，展示给用户看的，这时就在一个容器中显示就好
+            // 区分这两种情况只需要看undefined !== data["data"]["delta"]这个条件
+            eventSource.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                if (undefined !== data["data"]["delta"])
+                    lastBubble.append(data["data"]["delta"]);
+                else if (undefined !== data["data"]["assistantMessageId"])
+                    lastBubble.attr("messageId", data["data"]["assistantMessageId"]);
+            }
+
+            resolve();
+        }))
+    }
+</script>
+</body>
+</html>

@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 @Data
 public class QueryVo {
+
+    private String messageId;
     private String text;
 
     private ArrayList<Message> messages;

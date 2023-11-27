@@ -39,7 +39,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             }
         }
 
-        if (token == null) {
+        if (token == null || "".equals(token)) {
             response.sendRedirect("/index");
             return false;
         }

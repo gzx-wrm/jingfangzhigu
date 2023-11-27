@@ -27,6 +27,7 @@
 
     <build>
         <plugins>
+<!--            maven打包的插件，用这个插件打包可以忽略test目录下的内容-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

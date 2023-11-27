@@ -35,12 +35,12 @@ public class SseController {
     @Resource
     MessageService messageService;
 
-    Map<String, SseEmitter> emitters = new ConcurrentHashMap<>();
+    Map<String, SseEmitter> emitters = new HashMap<>();
 
     @GetMapping("/{chatId}")
     public SseEmitter subscribe(@PathVariable String chatId) {
         // 设置过期时间为5分钟
-        SseEmitter emitter = new SseEmitter(500_000L);
+        SseEmitter emitter = new SseEmitter(1000_000L);
         emitter.onCompletion(() -> emitters.remove(chatId));
         emitter.onTimeout(() -> emitters.remove(chatId));
         emitters.put(chatId, emitter);
@@ -53,7 +53,10 @@ public class SseController {
                             @RequestBody QueryVo queryVo) {
 
         SseEmitter emitter = emitters.get(chatId);
+        if (emitter == null)
+            return;
         ResponseEntity<Map> diagnosis = jingFangService.getDiagnosis(queryVo);
+        System.out.println(diagnosis.getStatusCode());
         // 如果响应的状态码不是200，则返回错误
         if (diagnosis.getStatusCode() != HttpStatus.OK) {
             EventMessageVo errorEvent = new EventMessageVo().setEvent(EventType.ERROR).setData("服务出错，请重试！");
@@ -70,13 +73,14 @@ public class SseController {
         }
         // 将用户发来的新消息保存
         String userMessageText = queryVo.getText();
-        String userMessageId = UUID.randomUUID().toString();
+        String userMessageId = queryVo.getMessageId();
         Message userMessage = new Message().setChatId(chatId)
                 .setMessageId(userMessageId)
                 .setContent(userMessageText)
                 .setRole(RoleType.USER)
                 .setMetadata("")
-                .setCreateTime(new Date())
+                // 用户消息设置的比服务器响应消息早1ms，这样可以保证前端正常显示
+                .setCreateTime(new Date(new Date().getTime() - 1000))
                 .setIsDelete(0);
         // 保存消息
         messageService.createMessage(userMessage);

@@ -32,7 +32,7 @@ public class ChatService {
 
     public ArrayList<Chat> getChatsWithoutMessages(String userId) {
         // 根据用户id查找chats
-        List<Chat> chats = chatMapper.selectList(Wrappers.<Chat>query().eq("user_id", userId).eq("is_delete", 0).orderByDesc("create_time"));
+        List<Chat> chats = chatMapper.selectList(Wrappers.<Chat>query().eq("user_id", userId).eq("is_delete", 0).orderByAsc("create_time"));
         return (ArrayList<Chat>) chats;
     }
 
@@ -48,19 +48,18 @@ public class ChatService {
         return chat;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class, isolation = Isolation.DEFAULT)
-    public int createChat(String userId, String chatId) {
-        Chat chat = new Chat();
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, isolation = Isolation.DEFAULT)
+    public int createChat(String userId, Chat chat) {
         Date date = new Date();
-        chat.setChatId(chatId)
-                .setUserId(userId)
+        chat.setUserId(userId)
                 .setCreateTime(date)
-                .setUpdateTime(date);
+                .setUpdateTime(date)
+                .setIsDelete(0);
 
         return chatMapper.insert(chat);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class, isolation = Isolation.DEFAULT)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, isolation = Isolation.DEFAULT)
     public int deleteChat(String userId, String chatId) {
         int i = chatMapper.update(null, Wrappers.<Chat>update().set("is_delete", 1).eq("user_id", userId).eq("chat_id", chatId));
         // 删除有关的消息

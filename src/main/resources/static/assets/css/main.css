@@ -1,0 +1,234 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    display: flex;
+    flex-direction: column; /* 设置主轴方向为垂直方向 */
+    height: 100vh;
+    background-image: url('../images/bgs/registerbg.png');
+    background-size: cover;
+}
+.head{
+    width: 100%;
+    height: 8%;
+    display: flex;
+}
+.logoimg {
+    width: auto;
+    height: 60%;
+    margin: auto 10px auto 20px;
+}
+textarea {
+    margin:auto 10px;
+    flex: 1; /* 设置矩形的宽度，根据需要调整 */
+    height: 30px;/* 设置矩形的高度，根据需要调整 */
+    border-radius: 100px;
+    background-color: white; /* 设置矩形的背景颜色，根据需要调整 */
+    font-size: 16px;
+    line-height: 30px;
+    padding-left:20px ;
+}
+.body{
+    height: 92%;
+    display: flex;
+    flex-direction: row; /* 设置主轴方向为垂直方向 */
+}
+.left-sidebar{
+    width: 20%;
+    background-color: rgb(255, 255, 255,0.5);
+    margin: 0.5%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* 设置主轴方向为垂直方向 */
+}
+.ChatHistory{
+    background-color: rgb(255, 255, 255,0.5);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.right-sidebar {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    margin: 0.5%;
+}/*右侧属性，整体*/
+.header {
+    text-align: center;
+    padding: 20px;
+    color: black;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    height: 0px;
+    overflow-y: auto;
+}/*右侧属性，头0*/
+
+.header1{
+    text-align: center;
+    padding: 20px;
+    color: black;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+}
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}/*右侧属性，内容区1*/
+.rectangle {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #036AFF;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    cursor: pointer;
+
+}/*右侧属性，长方形1*/
+.rectangle *{
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+.content22 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 5px 20px;
+}/*右侧属性，你可以问我--内容区2*/
+.rectangle2 {
+    width: 100%;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 30px;
+    cursor: pointer;
+}/*右侧属性，长方形2*/
+.box{
+    flex: 1;
+}/*右侧属性，占位*/
+.long-rectangle {
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}/*右侧属性，输入框*/
+.foot{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 1.0);
+    margin: 20px;
+    border-radius: 10px;
+}/*右侧属性，整块输入框3*/
+.choice{
+    display: flex;
+    padding: 20px 20px 0 20px;
+    flex-direction: row;
+    font-size: 12px;
+    flex-direction: row;
+}/*右侧属性，3.1*/
+.choiceContent{
+    display: flex;
+    flex-direction: row;
+    width:15%;
+    cursor: pointer;
+}
+.choiceContent img{
+    width: 20px;
+    height: 20px;
+}
+.choiceContent p{
+    margin: 0 10px;
+}
+.bottom{
+    display: flex;
+    padding: 20px;
+    align-items: flex-end;
+}/*右侧属性，3.2*/
+
+.bottom textarea{
+    flex: 1;
+    border-color: #d9d9d9;
+    resize: none;
+    outline: none;
+    padding: 0px 5px;
+    height: 70px;
+    line-height: 30px;
+    color: #000000;
+    border-radius: 10px 0px 0px 10px;
+    transition: all 0.3s,height 0s;
+    font-size: 14px;
+}
+.bottom textarea:hover{
+    border-color: #4096ff;
+}
+.bottom button{
+    height: 35px;
+    color: #fff;
+    background: linear-gradient(90deg, #2870EA 10.79%, #1B4AEF 87.08%);
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+    border: none;
+    padding: 0 20px;
+    border-radius: 0px 8px 8px 0px;
+    cursor: pointer;
+}
+.bottom button:hover{
+    background-color: #388aff;
+}
+/*对话气泡（备用）
+.chatpdfRow{
+    margin: 20px 10px;
+    display: flex;
+}
+.chatpdfAsk{
+    justify-content: flex-end;
+}
+.chatpdfContent{
+    display: inline-block;
+    border-radius: 8px;
+    padding: 6px 12px;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    box-shadow:  0px 0.3px 0.9px rgba(0, 0, 0, 0.12), 0px 1.6px 3.6px rgba(0, 0, 0, 0.16);
+}
+.chatpdfAsk .chatpdfContent{
+    background: linear-gradient(90deg, #2870EA 10.79%, #1B4AEF 87.08%);;
+    color: #fff;
+}*/
+.bubble {
+    display: inline-block;
+    background-color: #f2f2f2;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.bubble.me {
+    align-self: flex-end;
+    background-color: #99ddff;
+}

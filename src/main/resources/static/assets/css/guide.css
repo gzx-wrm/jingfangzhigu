@@ -2,33 +2,50 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('../images/bgs/bg2.png');
+    height: 100vh;
+    background-image: url('../images/bgs/bg3.png');
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 90px; /* 设置图片的宽度 */
+    height: auto; /* 让高度按比例自动调整 */
+}
+
+.arrow {
+    position: absolute;
+    top: 830px;
+    left: 760px;
+    height: auto; /* 让高度按比例自动调整 */
 }
 
 .header {
     position: fixed;
     width: 930px;
-    background-color: #f7f7f7;
+    background-color:#f7f7f7;
     padding: 5px;
-    right: 20px;
-    top: 20px;
+    right:20px;
+    top:20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    border-radius: 30px;
-    font-size: 20px;
+    border-radius:30px;
+    font-size:20px;
     box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5); /* 添加下阴影 */
 }
 
 
-img {
+
+.user {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+    border-radius:50%;
+    margin-right:10px;
     display: flex;
 }
 
@@ -43,7 +60,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: -200px;
+    margin-top:-200px;
 
 }
 
@@ -51,35 +68,35 @@ h1 {
     text-align: center;
     font-size: 40px;
     color: #689AFB;
-    margin-bottom: 5px;
+    margin-bottom:5px;
 }
 
-h2 {
+h2{
     font-size: 50px;
     color: #689AFB;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
-p {
-    margin-top: 10px;
+p{
+    margin-top:10px;
     font-size: 16px;
 }
 
-a {
+a{
     text-decoration: none;
     color: #689AFB;
     font-family: "兰亭粗黑简";
-    src: url("../font/兰亭粗黑简.TTF");
-    font-weight: bold;
-    margin-right: 30px;
+    src:url("../font/兰亭粗黑简.TTF");
+    font-weight:bold;
+    margin-right:30px;
 }
 
 .center-bottom {
     width: 40%;
-    position: absolute; /* 设置定位属性为固定或相对，具体取决于您的需求 */
-    bottom: 100px; /* 定位在页面中央偏下方 */
-    left: 705px; /* 根据需要调整以使文字居中 */
+    position: absolute;  /* 设置定位属性为固定或相对，具体取决于您的需求 */
+    bottom: 100px;  /* 定位在页面中央偏下方 */
+    left: 705px;  /* 根据需要调整以使文字居中 */
     font-size: 50px;
 
 }

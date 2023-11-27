@@ -38,11 +38,12 @@ public class UserController {
 
     /**
      * 用户根据手机号、验证码、密码注册
-     * @param phone 手机号
-     * @param code 验证
+     *
+     * @param phone       手机号
+     * @param code        验证
      * @param encPassword 加密后的密码
-     * @param request 请求
-     * @param response 响应
+     * @param request     请求
+     * @param response    响应
      * @return 注册结果
      * @throws RegisterException 注册异常
      */
@@ -63,19 +64,20 @@ public class UserController {
         // 将session中的验证码失效
         request.getSession().removeAttribute("code");
 
-        return Result.ok("注册成功！").data("redirectUrl", "/test");
+        return Result.ok("注册成功！").data("redirectUrl", "/main");
     }
 
     /**
      * 账号密码登陆
+     *
      * @param accountName 账号，可以是手机号，也可以是邮箱
      * @param encPassword 密码，md5加密后
-     * 在响应头中加上jwt验证信息，返回登录成功标识
+     *                    在响应头中加上jwt验证信息，返回登录成功标识
      */
     @RequestMapping(value = "/passwordLogin", method = RequestMethod.POST)
     public Result loginByPhonePassword(@RequestParam(name = "account") String accountName,
-                                         @RequestParam(name = "pwd") String encPassword,
-                                         HttpServletResponse response) throws LoginException {
+                                       @RequestParam(name = "pwd") String encPassword,
+                                       HttpServletResponse response) throws LoginException {
         String token = userService.LoginByPhonePassword(accountName, encPassword);
 
         // 将登陆成功的token写到cookie中
@@ -84,11 +86,12 @@ public class UserController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        return Result.ok("登录成功！").data("redirectUrl", "/test");
+        return Result.ok("登录成功！").data("redirectUrl", "/main");
     }
 
     /**
      * 发送验证码，并将正确的验证码保存在session中
+     *
      * @param phone 手机号码
      * @return 是否发送成功标识
      */
@@ -114,9 +117,10 @@ public class UserController {
 
     /**
      * 短信验证码登录，先判断账号是否存在，若存在则检查session中的短信是否与code相同
-     * @param phone 手机号
-     * @param code 验证码
-     * @param request 请求对象
+     *
+     * @param phone    手机号
+     * @param code     验证码
+     * @param request  请求对象
      * @param response 响应对象
      * @return 登录是否成功标识
      */
@@ -136,12 +140,13 @@ public class UserController {
         // 将session中的验证码失效
         request.getSession().removeAttribute("code");
 
-        return Result.ok("登录成功！").data("redirectUrl", "/test");
+        return Result.ok("登录成功！").data("redirectUrl", "/main");
     }
 
     /**
      * 用户退出登录
-     * @param request 请求
+     *
+     * @param request  请求
      * @param response 响应
      * @return 登出结果
      */
@@ -158,8 +163,9 @@ public class UserController {
 
     /**
      * 用户上传反馈信息
+     *
      * @param feedback 反馈内容，包括主题和内容
-     * @param imgs 附带的图片
+     * @param imgs     附带的图片
      * @return 反馈结果
      */
     @RequestMapping(value = "/feedback", method = RequestMethod.POST)
@@ -172,7 +178,7 @@ public class UserController {
         // 上传反馈信息，获取反馈信息的id，以此id来创建路径存储图像
         int feedbackId = feedbackService.commitFeedbackText(feedback);
 
-        for (MultipartFile file: imgs) {
+        for (MultipartFile file : imgs) {
             feedbackService.store(file, feedbackId);
         }
 
