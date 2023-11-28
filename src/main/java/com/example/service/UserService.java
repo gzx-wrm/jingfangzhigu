@@ -41,7 +41,7 @@ public class UserService {
      * @throws RegisterException 注册相关异常
      */
     @Transactional(propagation = Propagation.SUPPORTS,  rollbackFor = Exception.class, isolation = Isolation.DEFAULT)
-    public String register(String accountName, String rightCode, String code, String encPassword) throws RegisterException {
+    public String register(String accountName, String code, String rightCode, String encPassword) throws RegisterException {
         // 先检查用户是否存在
         User user = userMapper.selectOne(Wrappers.<User>query().eq("phone", accountName));
         if (user != null)

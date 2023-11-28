@@ -37,12 +37,12 @@ mybatis-plus:
 
 # 腾讯云SMS的相关参数
 tencent:
-  secretId: AKIDkHaeV7TaQzIMAhxxgwve6HBoAF3btwc3
-  secretKey: EBrIRKvGJAlpfFbhXDdpkOluoSu9AuNc
+  secretId: AKIDFQdjnEbuAKRenptqjbJuOwKfy9DA0jKo
+  secretKey: SmrnnhP1SgmqjP3sgiXAe52sZ3eAe2KQ
   sms:
-    signName: 翰翰的天地
-    templateId: 1389291
-    appId: 1400675283
+    signName: 北京安戈普罗科技有限公司
+    templateId: 1980771
+    appId: 1400867275
 
 logging:
   level:

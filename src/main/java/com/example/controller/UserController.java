@@ -100,19 +100,18 @@ public class UserController {
                           HttpServletRequest request) {
         // 生成一个随机验证码
         String code = VerifyCodeUtil.getCode();
-        request.getSession().setAttribute("code", "123456");
-        return Result.ok("验证码发送成功！");
-
+//        request.getSession().setAttribute("code", "123456");
+//        return Result.ok("验证码发送成功！");
 
         // 发送验证码并设置验证码有效时间
-//        if (userService.sendPhoneSms(phone, code)){
-//            request.getSession().setAttribute("code", code);
-//            // 设置有效时间为5分钟
-//            request.getSession().setMaxInactiveInterval(5);
-//            return Result.ok("验证码发送成功！");
-//        }
-//        else
-//            return Result.error("验证码发送失败！");
+        if (userService.sendPhoneSms(phone, code)){
+            request.getSession().setAttribute("code", code);
+            // 设置有效时间为5分钟
+            request.getSession().setMaxInactiveInterval(5000);
+            return Result.ok("验证码发送成功！");
+        }
+        else
+            return Result.error("验证码发送失败！");
     }
 
     /**
