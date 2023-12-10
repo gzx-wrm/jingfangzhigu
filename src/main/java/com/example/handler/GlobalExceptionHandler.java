@@ -5,15 +5,15 @@ import com.example.exception.FeedbackException;
 import com.example.exception.LoginException;
 import com.example.exception.RegisterException;
 import com.example.vo.Result;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author gzx
  * @date 2023/11/4
  * @Description 处理全局异常
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     // 加上该注解表明这是一个异常处理方法，注解的值为要拦截的异常类

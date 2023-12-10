@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="../static/assets/css/login.css">
     <link rel="stylesheet" href="../static/assets/css/common.css">
     <script src="../static/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 </head>
 <body>
 
@@ -43,6 +44,19 @@
             });
         });
     });
+
+    // 密码加密
+    // 使用示例
+    const salt = "jingfangzhiguuuuu";
+    function encryptPassword(password, salt) {
+        // 将盐和密码结合
+        const saltedPassword = password + salt;
+
+        // 使用MD5加密结合了盐的密码
+        const encryptedPassword = CryptoJS.MD5(saltedPassword).toString();
+
+        return encryptedPassword;
+    }
 
 </script>
 </html>

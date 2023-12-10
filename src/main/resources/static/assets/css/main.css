@@ -11,24 +11,44 @@ body {
     background-size: cover;
 }
 .head{
+    align-items: center;
     width: 100%;
     height: 8%;
     display: flex;
+}
+.background{
+    background-color: white;
+    border-radius: 0 30px;
+    height: 40px;
+    display: flex;
+    margin: auto 0 auto 10px;
 }
 .logoimg {
     width: auto;
     height: 60%;
     margin: auto 10px auto 20px;
 }
-textarea {
+.rec{
     margin:auto 10px;
     flex: 1; /* 设置矩形的宽度，根据需要调整 */
-    height: 30px;/* 设置矩形的高度，根据需要调整 */
+    height: 40px;/* 设置矩形的高度，根据需要调整 */
     border-radius: 100px;
-    background-color: white; /* 设置矩形的背景颜色，根据需要调整 */
     font-size: 16px;
     line-height: 30px;
     padding-left:20px ;
+    background-color: rgb(255, 255, 255,0.5);
+    display: flex;
+    flex-direction: row;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.recchoice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0px;
+    cursor: pointer;
 }
 .body{
     height: 92%;
@@ -37,7 +57,7 @@ textarea {
 }
 .left-sidebar{
     width: 20%;
-    background-color: rgb(255, 255, 255,0.5);
+    background-color: rgb(255, 255, 255,0.2);
     margin: 0.5%;
     border-radius: 10px;
     display: flex;
@@ -53,13 +73,14 @@ textarea {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    border: 2px solid #7499F4;
 }
 .right-sidebar {
     width: 80%;
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     margin: 0.5%;
 }/*右侧属性，整体*/
@@ -94,7 +115,7 @@ textarea {
 .rectangle {
     width: 100%;
     height: 100px;
-    border: 1px solid #036AFF;
+    border: 2px solid #7499F4;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     text-align: center;
@@ -125,8 +146,8 @@ textarea {
     line-height: 30px;
     cursor: pointer;
 }/*右侧属性，长方形2*/
-.box{
-    flex: 1;
+.chat{
+    height: 400px;
 }/*右侧属性，占位*/
 .long-rectangle {
     width: 100%;
@@ -140,8 +161,9 @@ textarea {
     display: flex;
     flex-direction: column;
     background-color: rgba(255, 255, 255, 1.0);
-    margin: 20px;
+    margin: 0px 20px 10px 20px;
     border-radius: 10px;
+    margin-top: auto; 
 }/*右侧属性，整块输入框3*/
 .choice{
     display: flex;
@@ -221,14 +243,43 @@ textarea {
 }*/
 .bubble {
     display: inline-block;
-    background-color: #f2f2f2;
+    background-color: white;
     padding: 10px 15px;
     margin: 5px;
     border-radius: 10px;
     max-width: 80%;
+    text-align: left;
+    vertical-align: top; /* 顶部对齐，确保头像和聊天气泡顶部对齐 */
 }
 
 .bubble.me {
     align-self: flex-end;
-    background-color: #99ddff;
+    background-color: #7499F4;
+}
+.avatar{
+    width : 30px;
+    height : 30px;
+    border-radius: 50%; /* 圆形头像 */
+    margin-left: 10px; /* 设置头像和聊天气泡之间的间距 */
+}
+
+.message-container {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.message-container1 {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.avatar1{
+    width : 30px;
+    height : 30px;
+    border-radius: 50%; /* 圆形头像 */
+    margin-right: 10px; /* 设置头像和聊天气泡之间的间距 */
 }
