@@ -35,7 +35,7 @@
     </root>
 
 <!--    指定某个包下的类输出方式为appender-ref，注意这里的包不包含子包-->
-    <logger name="com.example.service" level="DEBUG">
+    <logger name="com.angelpro.service" level="DEBUG">
 <!--        <appender-ref ref="FILE" />-->
         <appender-ref ref="CONSOLE" />
     </logger>

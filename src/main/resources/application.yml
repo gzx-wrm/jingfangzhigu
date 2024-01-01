@@ -26,7 +26,7 @@ spring:
 server:
   servlet:
     context-path: /
-  port: 8000
+  port: 8001
 
 # 日志
 mybatis-plus:

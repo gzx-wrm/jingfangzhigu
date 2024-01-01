@@ -170,7 +170,7 @@ under the License.
      | the build process. Profiles provided in the settings.xml are intended to provide local machine-
      | specific paths and repository locations which allow the build to work in the local environment.
      |
-     | For example, if you have an integration testing plugin - like cactus - that needs to know where
+     | For angelpro, if you have an integration testing plugin - like cactus - that needs to know where
      | your Tomcat instance is installed, you can provide a variable here such that the variable is
      | dereferenced during the build process to configure the cactus plugin.
      |
@@ -197,7 +197,7 @@ under the License.
          | This will make it more intuitive to understand what the set of introduced profiles is attempting
          | to accomplish, particularly when you only have a list of profile id's for debug.
          |
-         | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
+         | This profile angelpro uses the JDK version to trigger activation, and provides a JDK-specific repo.
         <profile>
           <id>jdk-1.4</id>
 

@@ -12,24 +12,43 @@
 <body>
 <div class="container">
     <div class="head">
-        <img class='logoimg' src="../static/assets/images/logo/logo.png"/>
-        <h4 style="margin:auto 30px auto 10px;">-您的私人AI中医诊疗助手-</h4>
-        <textarea placeholder="在这里输入多行内容" onfocus="clearPlaceholder(this)"></textarea>
+        <div class="background">
+            <img class='logoimg' src="../static/assets/images/logo/logo.png"/>
+            <h4 style="margin:auto 30px auto 10px; color: #7499F4;">-您的私人AI中医诊疗助手-</h4>
+        </div>
+        <div class="rec">
+            <div class="recchoice">
+                <h4 style="color:#7499F4; margin: auto 5px auto 0;">功能反馈</h4>
+                <img src="../static/assets/images/icon/remark.png"style="width: 24px; height:24px; margin: auto 10px auto 0;"/>
+            </div>
+            <div class="recchoice">
+                <h4 style="color:#7499F4; margin: auto 5px auto 0;">经方智谷小程序</h4>
+                <img src="../static/assets/images/icon/program.png"style="width: 24px; height:24px; margin: auto 10px auto 0;"/>
+            </div>          
+        </div>
+        <img src="../static/assets/images/icon/icon.png"style="border-radius: 50%;width: 40px;height: 40px;margin: auto 10px auto 0px;cursor: pointer;"/>
     </div>
     <div class="body">
         <div class="left-sidebar">
-            <div class="ChatHistory" id="new" style="border: 1px solid #036AFF; /* 设置边框样式，根据需要调整 */">
-                <img style="margin: auto 10px;width: 20px;" src="../static/assets/images/icon/plus.png"/>
-                <p style="text-align: center; flex: 1;color:#036AFF;font-size: 16px;font-weight:bold;">新建对话</p>
+            <div class="ChatHistory" id="new" style="background-color: #7499F4; /* 设置边框样式，根据需要调整 */">
+                <p style="text-align: center; flex: 1;color:white;font-size: 16px;font-weight:bold;">新建对话</p>
             </div>
             <div class="ChatHistory"
-                 style="border-top: 1px solid lightgrey;border-bottom: 1px solid lightgrey; border-radius: 0;background-color:rgb(255, 255, 255,0); padding: 0;margin:0;color: grey;">
+                 style="border-top: 1px solid lightgrey;border-bottom: 1px solid lightgrey; border-left:0;border-right:0;border-radius: 0;background-color:rgb(255, 255, 255,0); padding: 0;margin:0;color: grey;">
                 <img style="margin: auto 20px;width: 20px;" src="../static/assets/images/icon/fill-sousuo.png"/>
                 <p style=" flex: 1;">搜索历史记录</p>
             </div>
-            <p class="ChatHistoryHeader" style="font-size: 14px;">网页历史对话</p>
-            <div class="box"></div>
-            <!--<div class="head" style="justify-content: center;">
+            <div class="ChatHistory"style="border:0px;background-color:rgb(255, 255, 255,0); padding: 0;margin:0px; justify-content: center;height:40px;">
+                <h4 class="ChatHistoryHeader" style="font-size: 14px;color: #7499F4;margin: auto 5px auto 0;">网页历史对话</h4>
+                <img style="width: 20px;" src="../static/assets/images/icon/down.png"/>
+            </div>
+            <div class="chat"></div>
+            <div class="ChatHistory"style="margin-top: auto; /* 使用 auto 将小矩形推到容器的底部 */">
+                <img src="../static/assets/images/icon/delete.png"style="width: 32px;height: 32px;"/>
+                <p style="color:#7499F4">批量删除</p>
+            </div>
+            <!--<div class="box"></div>
+            <div class="head" style="justify-content: center;">
                 <div class="ChatHistory" style="flex: 1;">
                     <p style="text-align: center;flex: 1;">历史删除</p>
                 </div>
@@ -46,8 +65,8 @@
             <div class="header" id="header">
             </div>
             <div class="header1" id="header1">
-                <h1>经方智谷</h1>
-                <h4>—您的私人AI中医诊疗助手—</h4>
+                <h1 style="color:#7499F4;margin-top:0px">经方智谷</h1>
+                <h4 style="color:grey;margin: 0;">—您的私人AI中医诊疗助手—</h4>
             </div>
 
             <div class="content" id="content">
@@ -86,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box"></div>
+            <!--<div class="box"></div>-->
             <div class="foot">
                 <div class="choice">
                     <div class="choiceContent">
@@ -197,7 +216,7 @@
                 }
             })
         });
-        $(".ChatHistoryHeader").after(appendDiv);
+        $('.chat').append(appendDiv);
     }
 
     document.getElementById("hideButton").addEventListener("click", hideElements);
@@ -205,6 +224,7 @@
     document.getElementById('messageInput').addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             sendMessage();
+            element.placeholder = "";
         }
     });
 
@@ -227,25 +247,65 @@
 
     // 展示用户发出的信息
     function displaySendMessage(messageId, content) {
+        var messageContainer = $('<div/>', {
+        class: "message-container"
+        });
+
         var bubble = $('<div/>', {
             class: "bubble me",
             text: content
         }).css('white-space', 'pre-wrap');
+
+        //创建头像元素
+        var avatar = $('<img/>', {
+        class: "avatar",
+        src: "../static/assets/images/icon/icon.png", // 替换成你的头像路径
+        alt: "Avatar"
+    });
+
+        // 为新创建的 <div> 元素添加名为 "messageId" 的属性，值为 messageId 参数
         bubble.attr("messageId", messageId);
-        $('.header').append(bubble);
+        // 将头像和聊天气泡追加到父容器中
+        messageContainer.append(bubble).append(avatar);
+
+        // 将父容器追加到 '.header' 元素中
+        $('.header').append(messageContainer);
     }
 
     // 展示服务器响应信息
     function displayReplyMessage(messageId, content) {
         var conversation = document.getElementById('header');
+        //var bubble = $('<div/>', {
+        //    class: "bubble",
+        //    text: content,
+        //}).css('white-space', 'pre-wrap');
+        //bubble.attr("messageId", messageId);
+        //$('.header').append(bubble);
+        var messageContainer = $('<div/>', {
+        class: "message-container1"
+        });
+
         var bubble = $('<div/>', {
             class: "bubble",
-            text: content,
+            text: content
         }).css('white-space', 'pre-wrap');
-        bubble.attr("messageId", messageId);
-        $('.header').append(bubble);
-        conversation.scrollTop = conversation.scrollHeight;
 
+        //创建头像元素
+        var avatar = $('<img/>', {
+        class: "avatar1",
+        src: "../static/assets/images/logo/logo.png", // 替换成你的头像路径
+        alt: "Avatar"
+    });
+
+        // 为新创建的 <div> 元素添加名为 "messageId" 的属性，值为 messageId 参数
+        bubble.attr("messageId", messageId);
+        // 将头像和聊天气泡追加到父容器中
+        messageContainer.append(avatar).append(bubble);
+
+        // 将父容器追加到 '.header' 元素中
+        $('.header').append(messageContainer);
+       
+        conversation.scrollTop = conversation.scrollHeight;
         return bubble;
     }
 
